@@ -17,7 +17,7 @@ Think of it as your personal "screen time" tool for the web. No more mindless br
 ## Project Structure
 
 ```
-timeup-extension/
+TimeUP/
 ├── manifest.json
 ├── background.js
 ├── content.js
@@ -48,8 +48,8 @@ timeup-extension/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/timeup-extension.git
-cd timeup-extension
+git clone https://github.com/adinanda01/TimeUP.git
+cd TimeUP
 ```
 
 ### 2. Load Extension into Chrome
@@ -57,13 +57,13 @@ cd timeup-extension
 1. Open `chrome://extensions/` in your browser
 2. Enable Developer Mode (top right)
 3. Click Load Unpacked
-4. Select the `timeup-extension/` folder
+4. Select the `TimeUP/` folder
 
 ## Technologies Used
 
 - Chrome Extension APIs (Manifest v3)
 - Tailwind CSS for styling
-- Chart.js for data visualization (reports)
+- Chart.js for data visualisation (reports)
 - Vanilla JavaScript (React optional in future versions)
 - Optional MERN Stack planned for Phase 2
 
