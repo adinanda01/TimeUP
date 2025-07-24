@@ -1,0 +1,68 @@
+options/options.css
+/* Custom checkbox styling */
+.toggle-checkbox {
+appearance: none;
+width: 48px;
+height: 24px;
+background: #cbd5e0;
+border-radius: 24px;
+position: relative;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.toggle-checkbox:checked {
+background: #3b82f6;
+}
+
+.toggle-checkbox::after {
+content: '';
+position: absolute;
+width: 20px;
+height: 20px;
+background: white;
+border-radius: 50%;
+top: 2px;
+left: 2px;
+transition: transform 0.3s;
+}
+
+.toggle-checkbox:checked::after {
+transform: translateX(24px);
+}
+
+/* Tab styling */
+.tab-button {
+padding: 0.75rem 1.5rem;
+font-weight: 500;
+color: #6b7280;
+border-bottom: 2px solid transparent;
+transition: all 0.2s;
+}
+
+.tab-button:hover {
+color: #374151;
+}
+
+.tab-button.active {
+color: #3b82f6;
+border-bottom-color: #3b82f6;
+}
+
+/* / Notification animation / */
+div[class="fixed top-4"] {
+animation: slideIn 0.3s ease-out;
+transition: opacity 0.3s, transform 0.3s;
+}
+
+@keyframes slideIn {
+from {
+transform: translateX(100%);
+opacity: 0;
+}
+to {
+transform: translateX(0);
+opacity: 1;
+}
+}
+
