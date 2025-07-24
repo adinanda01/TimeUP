@@ -1,21 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>TimeUP Settings</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script defer src="options.js"></script>
-</head>
-<body class="p-6 bg-gray-50 text-gray-800 max-w-2xl mx-auto">
-  <h1 class="text-2xl font-bold mb-4">⚙️ TimeUP Settings</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TimeUP Settings</title>
+    <link rel="stylesheet" href="../styles/minimal.css" />
+    <link rel="stylesheet" href="../styles/tailwind.min.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="max-w-4xl mx-auto p-6">
+      <!-- Header -->
+      <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h1 class="text-3xl font-bold text-gray-800 flex items-center gap-3">
+          <span class="text-4xl">⚙️</span> TimeUP Settings
+        </h1>
+        <p class="text-gray-600 mt-2">
+          Manage your time limits and view detailed statistics
+        </p>
+      </div>
 
-  <div id="siteSettings" class="space-y-4 mb-6"></div>
+      <!-- Settings Tabs -->
+      <div class="bg-white rounded-lg shadow-md mb-6">
+        <div class="border-b border-gray-200">
+          <nav class="flex -mb-px">
+            <button class="tab-button active" data-tab="limits">
+              Time Limits
+            </button>
+            <button class="tab-button" data-tab="general">
+              General Settings
+            </button>
+            <button class="tab-button" data-tab="data">Data Management</button>
+          </nav>
+        </div>
 
-  <hr class="my-4">
+        <!-- Tab Content -->
+        <div class="p-6">
+          <!-- Limits Tab -->
+          <div id="limits-tab" class="tab-content">
+            <div class="mb-4 flex justify-between items-center">
+              <h2 class="text-xl font-semibold text-gray-800">
+                Website Time Limits
+              </h2>
+              <button
+                id="addNewLimit"
+                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              >
+                + Add New Limit
+              </button>
+            </div>
 
-  <div class="space-y-4">
-    <button id="resetStats" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">♻️ Reset All Stats</button>
-    <button id="exportData" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">📤 Export Data</button>
-  </div>
-</body>
+            <div id="limitsContainer" class="space-y-4">
+              <!-- Limits will be populated here -->
+            </div>
+          </div>
+
+          <!-- General Settings Tab -->
+          <div id="general-tab" class="tab-content hidden">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">
+              General Settings
+            </h2>
+
+            <div class="space-y-4">
+              <label
+                class="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+              >
+                <div>
+                  <span class="font-medium">Enable Notifications</span>
+                  <p class="text-sm text-gray-600">
+                    Get alerts when you exceed time limits
+                  </p>
+                </div>
+                <input
+                  type="checkbox"
+                  id="notificationsEnabled"
+                  class="toggle-checkbox"
+                />
+              </label>
+
+              <label
+                class="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+              >
+                <div>
+                  <span class="font-medium">Idle Detection</span>
+                  <p class="text-sm text-gray-600">
+                    Pause tracking when you're away
+                  </p>
+                </div>
+                <input
+                  type="checkbox"
+                  id="idleDetectionEnabled"
+                  class="toggle-checkbox"
+                />
+              </label>
+
+              <div class="p-4 bg-gray-50 rounded-lg">
+                <label class="font-medium block mb-2"
+                  >Idle Threshold (seconds)</label
+                >
+                <input
+                  type="number"
+                  id="idleThreshold"
+                  min="10"
+                  max="300"
+                  value="30"
+                  class="w-full px-3 py-2 border rounded-md"
+                />
+              </div>
+            </div>
+
+            <button
+              id="saveSettings"
+              class="mt-6 px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+            >
+              Save Settings
+            </button>
+          </div>
+
+          <!-- Data Management Tab -->
+          <div id="data-tab" class="tab-content hidden">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">
+              Data Management
+            </h2>
+
+            <div class="grid gap-4">
+              <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <h3 class="font-medium text-yellow-800 mb-2">⚠️ Danger Zone</h3>
+                <div class="space-y-2">
+                  <button
+                    id="resetDaily"
+                    class="w-full px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700"
+                  >
+                    Reset Today's Data
+                  </button>
+                  <button
+                    id="resetWeekly"
+                    class="w-full px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700"
+                  >
+                    Reset This Week's Data
+                  </button>
+                  <button
+                    id="resetAll"
+                    class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                  >
+                    Reset All Data
+                  </button>
+                </div>
+              </div>
+
+              <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <h3 class="font-medium text-blue-800 mb-2">
+                  📤 Export & Import
+                </h3>
+                <div class="space-y-2">
+                  <button
+                    id="exportData"
+                    class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  >
+                    Export All Data
+                  </button>
+                  <label class="block">
+                    <span class="sr-only">Import data</span>
+                    <input
+                      type="number"
+                      id="idleThreshold"
+                      min="10"
+                      max="300"
+                      value="60"
+                      class="w-full px-3 py-2 border rounded-md"
+                    />
+                    <button
+                      id="importButton"
+                      class="w-full px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 cursor-pointer"
+                    >
+                      Import Data
+                    </button>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Summary -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">📊 Quick Stats</h2>
+        <div id="statsContainer" class="grid grid-cols-3 gap-4">
+          <!-- Stats will be populated here -->
+        </div>
+      </div>
+    </div>
+    <!-- Modal for adding new limit -->
+    <div
+      id="limitModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center"
+    >
+      <div class="bg-white rounded-lg p-6 w-96">
+        <h3 class="text-lg font-semibold mb-4">Add Time Limit</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Domain</label>
+            <input
+              type="text"
+              id="modalDomain"
+              placeholder="example.com"
+              class="w-full px-3 py-2 border rounded-md"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1"
+              >Daily Limit (minutes)</label
+            >
+            <input
+              type="number"
+              id="modalDailyLimit"
+              placeholder="0 for no limit"
+              class="w-full px-3 py-2 border rounded-md"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1"
+              >Weekly Limit (minutes)</label
+            >
+            <input
+              type="number"
+              id="modalWeeklyLimit"
+              placeholder="0 for no limit"
+              class="w-full px-3 py-2 border rounded-md"
+            />
+          </div>
+          <div class="flex gap-2">
+            <button
+              id="modalCancel"
+              class="flex-1 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+            <button
+              id="modalSave"
+              class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="options.js"></script>
+  </body>
+  
 </html>
