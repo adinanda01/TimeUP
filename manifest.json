@@ -1,38 +1,41 @@
 {
   "manifest_version": 3,
-  "name": "TimeUP",
-  "description": "Track and limit your time spent on websites.",
-  "version": "1.0",
+  "name": "TimeUP - Website Time Tracker",
+  "description": "Track, limit, and analyze your time spent on websites with detailed reports and productivity insights.",
+  "version": "1.0.0",
+  "minimum_chrome_version": "88",
   "permissions": [
     "tabs",
     "storage",
     "alarms",
-    "notifications"
+    "notifications",
+    "idle",
+    "scripting"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
-    }
-  },
-  "background": {
-    "service_worker": "background.js"
+    },
+    "default_title": "TimeUP - Click to view stats"
   },
   "options_page": "options/options.html",
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["styles/tailwind.css"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "offline_enabled": false
 }
