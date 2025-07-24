@@ -1,36 +1,94 @@
-<!-- In popup.html or options.html -->
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<a href="../report/report.html" target="_blank" class="text-blue-600 underline text-sm">View full report →</a>
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>TimeUP</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script defer src="popup.js"></script>
-</head>
-<body class="w-80 p-4 bg-white text-gray-800">
-  <h1 class="text-xl font-bold mb-3">📊 TimeUP Dashboard</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TimeUP Dashboard</title>
+    <!-- <link rel="stylesheet" href="../styles/minimal.css" /> -->
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="popup-container">
+      <!-- Header -->
+      <header class="popup-header">
+        <div class="header-content">
+          <h1 class="app-title">
+            <span class="app-icon">⏱️</span>
+            <span>TimeUP</span>
+          </h1>
+          <div class="current-datetime" id="currentDateTime"></div>
+        </div>
+      </header>
 
-  <div id="totalTime" class="mb-4 text-sm text-gray-700">
-    Total time today: <span class="font-medium" id="totalTimeValue">--</span>
-  </div>
+      <!-- Main Content -->
+      <main class="popup-content">
+        <!-- Current Session Card -->
+        <div class="card" id="currentSessionCard">
+          <h2 class="card-title">Current Session</h2>
+          <div id="currentSession" class="current-session-content">
+            <div class="loading-state">
+              <div class="spinner"></div>
+              <span>Loading...</span>
+            </div>
+          </div>
+        </div>
 
-  <div>
-    <h2 class="text-sm font-semibold mb-2">Top 5 Sites Today:</h2>
-    <ul id="siteList" class="space-y-2 text-sm"></ul>
-  </div>
+        <!-- Today's Stats Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Today's Activity</h2>
+            <div class="total-time" id="totalTimeToday">--</div>
+          </div>
+          <div id="topSitesToday" class="sites-list">
+            <!-- Sites will be populated here -->
+          </div>
+        </div>
 
-  <hr class="my-3">
+        <!-- Update the quick add limit section -->
+        <div class="card">
+          <h3 class="card-title">Quick Add Limit</h3>
+          <div class="quick-limit-form">
+            <input
+              type="text"
+              id="quickDomain"
+              placeholder="youtube.com"
+              class="input input-domain"
+              autocomplete="off"
+              spellcheck="false"
+              title="Enter domain name (e.g., youtube.com)"
+            />
+            <input
+              type="number"
+              id="quickLimit"
+              placeholder="30"
+              min="1"
+              max="1440"
+              class="input input-limit"
+              title="Daily limit in minutes (1-1440)"
+            />
+            <button
+              id="addLimitBtn"
+              class="btn btn-primary"
+              title="Add daily time limit"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </main>
 
-  <div class="text-sm">
-    <label class="block mb-1">Set Daily Limit:</label>
-    <input id="domainInput" type="text" placeholder="example.com" class="w-full px-2 py-1 border rounded mb-2">
-    <input id="limitInput" type="number" placeholder="in minutes" class="w-full px-2 py-1 border rounded mb-2">
-    <button id="addLimitBtn" class="w-full bg-blue-600 text-white py-1 rounded hover:bg-blue-700">
-      ➕ Add Limit
-    </button>
-  </div>
-</body>
+      <!-- Footer Navigation -->
+      <footer class="popup-footer">
+        <button id="settingsBtn" class="nav-btn">
+          <span class="nav-icon">⚙️</span>
+          <span>Settings</span>
+        </button>
+        <button id="reportBtn" class="nav-btn nav-btn-primary">
+          <span class="nav-icon">📊</span>
+          <span>Report</span>
+        </button>
+      </footer>
+    </div>
+  </body>
+  <script src="popup.js"></script>
 </html>
