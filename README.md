@@ -188,16 +188,6 @@ User Activity → Content Script → Service Worker → Chrome Storage → UI
 - Third-party API integration
 - Mobile companion app
 
-## Support
-
-- GitHub Issues
-- Email: support@timeup.example.com
-- Documentation: Wiki (coming soon)
-
-## License
-
-Maintained by Author
-
 ## Acknowledgments
 
 - Chart.js for visualizations
@@ -210,3 +200,7 @@ Maintained by Author
 Aditya Nanda
 [LinkedIn](https://linkedin.com/in/aditya-nanda-8b0325252)
 [Email](mailto:a.nanda@iitg.ac.in)
+
+## License
+
+Maintained by Author
