@@ -40,7 +40,7 @@ TimeUP is a lightweight, privacy-first time tracking tool for Chrome. It monitor
 ### Developers
 
 ```bash
-git clone https://github.com/yourusername/timeup.git
+git clone https://github.com/adinanda01/TimeUP.git
 cd timeup
 ```
 
