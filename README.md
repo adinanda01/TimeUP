@@ -195,12 +195,6 @@ User Activity → Content Script → Service Worker → Chrome Storage → UI
 - Chrome extension developer community
 - All contributors and testers
 
-## Author
-
-Aditya Nanda
-[LinkedIn](https://linkedin.com/in/aditya-nanda-8b0325252)
-[Email](mailto:a.nanda@iitg.ac.in)
-
 ## License
 
 Maintained by Author
